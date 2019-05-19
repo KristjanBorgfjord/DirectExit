@@ -47,7 +47,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 	for (int i = 0; i < 60; i++)
 	{
-		wnd_title[i] = 'a';
+		wnd_title[i] = '\0';
 	}
 	
 
@@ -161,7 +161,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 							if (handle)
 							{
 								
-								GetWindowTextW(foregroundWin, wnd_title, 25 * sizeof(wnd_title)); //get window title text
+								GetWindowTextW(foregroundWin, wnd_title, 23); //get window title text
+
+								wcscat_s(wnd_title, L"...\0");
 
 								if (TerminateProcess(handle, 0))
 								{
