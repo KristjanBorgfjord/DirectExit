@@ -65,7 +65,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		trayIcon.uCallbackMessage = WM_MYMESSAGE;
 		trayIcon.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 		wcsncpy_s(trayIcon.szInfo, L"Direct Exit\0", ARRAYSIZE(trayIcon.szInfo)); //wcsncpy is wide char strncpy
-		//StringCchCopyW(trayIcon.szTip, ARRAYSIZE(trayIcon.szTip), L"Direct Exit\0");
 		wcsncpy_s(trayIcon.szInfo, L"Direct Exit has started\0", ARRAYSIZE(trayIcon.szInfo));
 		wcsncpy_s(trayIcon.szInfoTitle, L"Direct Exit\0", ARRAYSIZE(trayIcon.szInfoTitle));
 
@@ -161,8 +160,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 							if (handle)
 							{
-								//wnd_title = (LPWSTR)(malloc(60 * sizeof(wchar_t))); //get window title text
-								GetWindowTextW(foregroundWin, wnd_title, 25 * sizeof(wnd_title));
+								
+								GetWindowTextW(foregroundWin, wnd_title, 25 * sizeof(wnd_title)); //get window title text
 
 								if (TerminateProcess(handle, 0))
 								{
@@ -177,7 +176,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 								Shell_NotifyIconW(NIM_MODIFY, &trayIcon); //show updated tray notification
 
-								//free(wnd_title);
+								
 							}
 							else
 							{
